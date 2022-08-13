@@ -11,7 +11,6 @@ Do you think your e-girlfriend is cheating on you while you sleep? Well worry no
 - [Setup](#setup)
   - [24/7](#247)
     - [Important Stuff](#important-stuff)
-    - [Make sure to add a ⭐ if you are using the bot](#make-sure-to-add-a--if-you-are-using-the-bot)
 
 # Setup
 
