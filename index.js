@@ -33,15 +33,6 @@ client.on("ready", async () => {
   client.user.setActivity(r.toJSON());
 });
 
-// client.on("messageCreate", (message) => {
-//   if (message.author.id === client.user.id) return;
-//   if (message.channel.type == "DM") {
-//     const haruke = client.users.cache.get("852848188942581764");
-
-//     haruke.send(`\`${message.author.tag}\` : ${message.content}`);
-//   }
-// });
-
 const userId = config.userID;
 
 client.on("ready", () => {
@@ -93,12 +84,6 @@ client.on("ready", () => {
         if (!lastMessage) return;
 
         let lastMsgContent = lastMessage.content;
-
-        // var textDevice = lastMsgContent.split("on ").pop().split("!")[0];
-
-        // var updatedDevice = textDevice.replace(textDevice, devices);
-
-        // lastMessage.edit(updatedDevice);
 
         var updatedDevice = lastMsgContent.replace(
           /on .*!/,
