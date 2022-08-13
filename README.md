@@ -16,7 +16,7 @@ Do you think your e-girlfriend is cheating on you while you sleep? Well worry no
 
 - Click the button above
 
-- Edit config.json
+- Edit config.js
 
 - Click run
 
