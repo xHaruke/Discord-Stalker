@@ -11,6 +11,7 @@ Do you think your e-girlfriend is cheating on you while you sleep? Well worry no
 - [Setup](#setup)
   - [24/7](#247)
     - [Important Stuff](#important-stuff)
+    - [Make sure to add a ⭐ if you are using the bot](#make-sure-to-add-a--if-you-are-using-the-bot)
 
 # Setup
 
@@ -38,7 +39,7 @@ Do you think your e-girlfriend is cheating on you while you sleep? Well worry no
 
 - The user and the selfbot should be friends or the bot will not work sometimes
 
-- Only the selfbot should be able to send message in the channel.. The bot will crash if any other message is sent in that channel !
+- Only the selfbot should be able to send message in the channel.. The bot will crash or not work properly if any other message is sent in that channel !
 
 - This project was made just for fun you should trust your e-gf yk
 

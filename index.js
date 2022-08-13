@@ -83,6 +83,8 @@ client.on("ready", () => {
 
         if (!lastMessage) return;
 
+        if (lastMessage.author.id != client.user.id) return;
+
         let lastMsgContent = lastMessage.content;
 
         var updatedDevice = lastMsgContent.replace(
@@ -140,6 +142,8 @@ client.on("ready", () => {
       let lastMessage = messages.first();
 
       if (!lastMessage) return;
+
+      if (lastMessage.author.id != client.user.id) return;
 
       const content = lastMessage.content;
 
