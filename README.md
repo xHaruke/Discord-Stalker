@@ -1,6 +1,6 @@
 # Discord Stalker
 
-Do you think your e-girlfriend is cheating on you while you sleep? Well worry no more use this selfbot to log when she was online/dnd/idle/offline using this selfbot 😂
+Do you think your e-girlfriend is cheating on you while you sleep? Well worry no more use this selfbot to log when she was online/dnd/idle/offline 😂
 
 # Table of contents
 
