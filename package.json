@@ -1,7 +1,7 @@
 {
   "name": "presence-update-v2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Do you think your e-girlfriend is cheating on you while you sleep? Well worry no more use this selfbot to log when she was online/dnd/idle/offline using this selfbot 😂",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -15,5 +15,14 @@
     "express": "^4.18.1",
     "moment": "^2.29.4",
     "old-wio.db": "^4.0.10"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xHaruke/Discord-Stalker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xHaruke/Discord-Stalker/issues"
+  },
+  "homepage": "https://github.com/xHaruke/Discord-Stalker#readme"
 }
