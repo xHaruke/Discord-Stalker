@@ -45,6 +45,12 @@ client.on("ready", () => {
 
     const member = guild.members.cache.get(userId);
 
+    if (db.has(`${presenceChannel.id}-MessageID`)) {
+      messageID = db.fetch(`${presenceChannel.id}-MessageID`);
+    } else {
+      messageID = "Unknown";
+    }
+
     // Device
 
     let devices = [];
@@ -78,21 +84,18 @@ client.on("ready", () => {
     db.set(`${presenceUser.id}-device`, devices);
 
     if (oldDevices != devices) {
-      presenceChannel.messages.fetch({ limit: 1 }).then((messages) => {
-        let lastMessage = messages.first();
+      if (messageID == "Unkown") return;
 
-        if (!lastMessage) return;
+      const message = presenceChannel.messages.cache.get(messageID);
 
-        if (lastMessage.author.id != client.user.id) return;
+      if (!message) return;
 
-        let lastMsgContent = lastMessage.content;
+      if (message.author.id != client.user.id) return;
 
-        var updatedDevice = lastMsgContent.replace(
-          /on .*!/,
-          "on " + devices + "!"
-        );
-        lastMessage.edit(updatedDevice);
-      });
+      let MsgContent = message.content;
+
+      var updatedDevice = MsgContent.replace(/on .*!/, "on " + devices + "!");
+      message.edit(updatedDevice);
     }
 
     if (!member.presence) {
@@ -138,39 +141,51 @@ client.on("ready", () => {
 
     /* Old Presence */
 
-    presenceChannel.messages.fetch({ limit: 1 }).then((messages) => {
-      let lastMessage = messages.first();
+    if (messageID != "Unknown") {
+      const message = presenceChannel.messages.cache.get(messageID);
 
-      if (!lastMessage) return;
-
-      if (lastMessage.author.id != client.user.id) return;
-
-      const content = lastMessage.content;
-
-      const contentModified = content.replace("is", "was");
-
-      lastMessage.edit(contentModified + presenceDuration);
-    });
+      if (message) {
+        const content = message.content;
+        const contentModified = content.replace("is", "was");
+        message.edit(contentModified + presenceDuration);
+      }
+    }
 
     if (Presence == "online") {
-      presenceChannel.send(
-        `‎ \n${config.emojis.online} ∙ **${presenceUser.tag}** is **\`online\`** on ${devices}!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
-      );
+      presenceChannel
+        .send(
+          `‎ \n${config.emojis.online} ∙ **${presenceUser.tag}** is **\`online\`** on ${devices}!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
+        )
+        .then((msg) => {
+          db.set(`${msg.channel.id}-MessageID`, msg.id);
+        });
     }
     if (Presence == "idle") {
-      presenceChannel.send(
-        `‎ \n${config.emojis.idle} ∙ **${presenceUser.tag}** is **\`idle\`** on ${devices}!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
-      );
+      presenceChannel
+        .send(
+          `‎ \n${config.emojis.idle} ∙ **${presenceUser.tag}** is **\`idle\`** on ${devices}!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
+        )
+        .then((msg) => {
+          db.set(`${msg.channel.id}-MessageID`, msg.id);
+        });
     }
     if (Presence == "dnd") {
-      presenceChannel.send(
-        `‎ \n${config.emojis.dnd} ∙ **${presenceUser.tag}** is **\`dnd\`** on ${devices}!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
-      );
+      presenceChannel
+        .send(
+          `‎ \n${config.emojis.dnd} ∙ **${presenceUser.tag}** is **\`dnd\`** on ${devices}!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
+        )
+        .then((msg) => {
+          db.set(`${msg.channel.id}-MessageID`, msg.id);
+        });
     }
     if (Presence == "offline") {
-      presenceChannel.send(
-        `‎ \n${config.emojis.offline} ∙ **${presenceUser.tag}** is **\`offline\`**!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
-      );
+      presenceChannel
+        .send(
+          `‎ \n${config.emojis.offline} ∙ **${presenceUser.tag}** is **\`offline\`**!\n\n<t:${time}:F> [ <t:${time}:R> ]\n‎ `
+        )
+        .then((msg) => {
+          db.set(`${msg.channel.id}-MessageID`, msg.id);
+        });
     }
     console.log(
       `\n${presenceUser.tag} is now ${Presence} - ${new Date().toLocaleString(
